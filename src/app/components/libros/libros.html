@@ -1,0 +1,43 @@
+<div class="container">
+
+  <h1>Sistema de Libros</h1>
+
+  <!-- Estado de carga -->
+  <div *ngIf="cargando" class="loading">
+    <p>Cargando libros...</p>
+  </div>
+
+  <!-- Mostrar error si existe -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Mostrar tabla si hay datos -->
+  <div *ngIf="!cargando && !error">
+    <p>Total libros: <strong>{{ libros.length }}</strong></p>
+
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Autor</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let libro of libros">
+          <td>{{ libro.idLibro }}</td>
+          <td>{{ libro.titulo }}</td>
+          <td>{{ libro.autor }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Mostrar mensaje si no hay libros -->
+    <div *ngIf="libros.length === 0" class="no-data">
+      <p>No hay libros disponibles</p>
+    </div>
+  </div>
+
+</div>
